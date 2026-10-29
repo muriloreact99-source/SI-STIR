@@ -34,17 +34,6 @@ export const RuangKepalaSekolahView: React.FC<RuangKepalaSekolahViewProps> = ({
   onUpdateSupervisionNote,
   showToast,
 }) => {
-  // Gate check: only kepalasekolah can access
-  if (currentRole !== 'kepalasekolah') {
-    return (
-      <RoleGateCard
-        roomName="Ruang Kepala Sekolah"
-        allowedRoleLabel="Ibu Kepala Sekolah (Ibu Khoyum Supardi, S.Pd.SD, M.Pd.)"
-        onOpenLogin={onOpenLogin}
-      />
-    );
-  }
-
   const [activeTab, setActiveTab] = useState<'supervisi' | 'arsip' | 'guru' | 'rekap'>('supervisi');
   const [selectedCategory, setSelectedCategory] = useState<string>('Semua');
   const [selectedYear, setSelectedYear] = useState<string>('Semua');
@@ -61,6 +50,17 @@ export const RuangKepalaSekolahView: React.FC<RuangKepalaSekolahViewProps> = ({
 
   const [supervisingTeacher, setSupervisingTeacher] = useState<TeacherProfile | null>(null);
   const [teacherNoteInput, setTeacherNoteInput] = useState<string>('');
+
+  // Gate check: only kepalasekolah can access
+  if (currentRole !== 'kepalasekolah') {
+    return (
+      <RoleGateCard
+        roomName="Ruang Kepala Sekolah"
+        allowedRoleLabel="Ibu Kepala Sekolah (Ibu Khoyum Supardi, S.Pd.SD, M.Pd.)"
+        onOpenLogin={onOpenLogin}
+      />
+    );
+  }
 
   // Filter archive docs
   const filteredDocs = archiveDocs.filter((doc) => {
