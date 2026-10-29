@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-cream: #FFF0C5;
+    --color-surface-card: #FFFAE6;
+    --color-mint: #8AD6D1;
+    --color-teal: #359FA0;
+    --color-orange: #FF8C52;
+    --color-deep-teal: #12383A;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-cream);
+    color: var(--color-deep-teal);
+    margin: 0;
+    padding: 0;
+  }
+
+  .dark body {
+    background-color: #0E2A2C;
+    color: #FFF0C5;
+  }
+}
+
+/* Neo-Tactile Elevation & Borders according to DESIGN.md */
+.card-tactile {
+  border: 2px solid #12383A;
+  box-shadow: 5px 5px 0 #12383A;
+}
+
+.dark .card-tactile {
+  border-color: #8AD6D1;
+  box-shadow: 5px 5px 0 #04171A;
+}
+
+.btn-tactile {
+  border: 2px solid #12383A;
+  box-shadow: 3px 3px 0 #12383A;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.btn-tactile:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 transparent;
+}
+
+.btn-tactile:focus-visible {
+  outline: 3px solid #FF8C52;
+  outline-offset: 3px;
+}
+
+.dark .btn-tactile {
+  border-color: #8AD6D1;
+  box-shadow: 3px 3px 0 #04171A;
+}
+
+.dark .btn-tactile:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Input tactile */
+.input-tactile {
+  border: 2px solid #12383A;
+  border-radius: 16px;
+  min-height: 48px;
+}
+
+.dark .input-tactile {
+  border-color: #8AD6D1;
+}
+
+/* Chip tactile */
+.chip-tactile {
+  border: 2px solid #12383A;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.dark .chip-tactile {
+  border-color: #8AD6D1;
+}
