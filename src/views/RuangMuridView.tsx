@@ -28,17 +28,6 @@ export const RuangMuridView: React.FC<RuangMuridViewProps> = ({
   onLikeArtwork,
   showToast,
 }) => {
-  // Gate check: only murid and kepalasekolah can access
-  if (currentRole !== 'murid' && currentRole !== 'kepalasekolah') {
-    return (
-      <RoleGateCard
-        roomName="Ruang Murid"
-        allowedRoleLabel="Murid SDN 03 Wonosari dan Kepala Sekolah"
-        onOpenLogin={onOpenLogin}
-      />
-    );
-  }
-
   const [hasAttended, setHasAttended] = useState<boolean>(true);
   const [activeTaskFilter, setActiveTaskFilter] = useState<string>('Semua');
   const [submittingTask, setSubmittingTask] = useState<StudentTask | null>(null);
@@ -49,6 +38,17 @@ export const RuangMuridView: React.FC<RuangMuridViewProps> = ({
   const [newArtDesc, setNewArtDesc] = useState<string>('');
   const [newArtEmoji, setNewArtEmoji] = useState<string>('🎨');
   const [formError, setFormError] = useState<string>('');
+
+  // Gate check: only murid and kepalasekolah can access
+  if (currentRole !== 'murid' && currentRole !== 'kepalasekolah') {
+    return (
+      <RoleGateCard
+        roomName="Ruang Murid"
+        allowedRoleLabel="Murid SDN 03 Wonosari dan Kepala Sekolah"
+        onOpenLogin={onOpenLogin}
+      />
+    );
+  }
 
   const completedCount = habits.filter((h) => h.completed).length;
   const progressPercent = Math.round((completedCount / habits.length) * 100);
