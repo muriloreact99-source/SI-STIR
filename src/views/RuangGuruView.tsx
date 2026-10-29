@@ -33,17 +33,6 @@ export const RuangGuruView: React.FC<RuangGuruViewProps> = ({
   onSendMessage,
   showToast,
 }) => {
-  // Gate check: only guru and kepalasekolah can access
-  if (currentRole !== 'guru' && currentRole !== 'kepalasekolah') {
-    return (
-      <RoleGateCard
-        roomName="Ruang Guru"
-        allowedRoleLabel="Ibu Guru SDN 03 Wonosari dan Kepala Sekolah"
-        onOpenLogin={onOpenLogin}
-      />
-    );
-  }
-
   const [activeTab, setActiveTab] = useState<'modul' | 'tugas' | 'jurnal' | 'pesan'>('modul');
   const [isAddingModul, setIsAddingModul] = useState<boolean>(false);
   const [newTitle, setNewTitle] = useState<string>('');
@@ -57,6 +46,17 @@ export const RuangGuruView: React.FC<RuangGuruViewProps> = ({
 
   const [journalContent, setJournalContent] = useState<string>('Hari ini murid kelas 1 belajar melafalkan huruf vokal dengan irama lagu daerah. Semua 24 murid aktif berlatih dan suasana kelas sangat kondusif.');
   const [teacherChatInput, setTeacherChatInput] = useState<string>('');
+
+  // Gate check: only guru and kepalasekolah can access
+  if (currentRole !== 'guru' && currentRole !== 'kepalasekolah') {
+    return (
+      <RoleGateCard
+        roomName="Ruang Guru"
+        allowedRoleLabel="Ibu Guru SDN 03 Wonosari dan Kepala Sekolah"
+        onOpenLogin={onOpenLogin}
+      />
+    );
+  }
 
   const teacherModul = modulList.filter((m) => m.teacherName === 'Ibu Darmiati, S.Pd');
 
