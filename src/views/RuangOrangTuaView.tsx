@@ -28,6 +28,12 @@ export const RuangOrangTuaView: React.FC<RuangOrangTuaViewProps> = ({
   tasks,
   showToast,
 }) => {
+  const [selectedChild, setSelectedChild] = useState<'Aisyah' | 'Fajar'>('Aisyah');
+  const [reflectionText, setReflectionText] = useState<string>('');
+  const [reflectionError, setReflectionError] = useState<string>('');
+  const [chatInput, setChatInput] = useState<string>('');
+  const [chatError, setChatError] = useState<string>('');
+
   // Gate check: only orangtua and kepalasekolah can access
   if (currentRole !== 'orangtua' && currentRole !== 'kepalasekolah') {
     return (
@@ -38,12 +44,6 @@ export const RuangOrangTuaView: React.FC<RuangOrangTuaViewProps> = ({
       />
     );
   }
-
-  const [selectedChild, setSelectedChild] = useState<'Aisyah' | 'Fajar'>('Aisyah');
-  const [reflectionText, setReflectionText] = useState<string>('');
-  const [reflectionError, setReflectionError] = useState<string>('');
-  const [chatInput, setChatInput] = useState<string>('');
-  const [chatError, setChatError] = useState<string>('');
 
   const currentClass = selectedChild === 'Aisyah' ? 'Kelas 1' : 'Kelas 2';
   const currentTeacher = selectedChild === 'Aisyah' ? 'Ibu Darmiati, S.Pd' : 'Ibu Fadilatul Jannah Samsuru, S.Pd';
